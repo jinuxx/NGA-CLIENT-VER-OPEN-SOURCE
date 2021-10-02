@@ -33,6 +33,14 @@ public class UrlInputDialogFragment extends BaseDialogFragment {
             mUrlAddEditText.setFocusable(true);
         } else {
             url = url.toLowerCase(Locale.US).trim();
+            if (TextUtils.isDigitsOnly(url)) {
+                url = Utils.getNGAHost() + "read.php?tid=" + url;
+                System.out.println("url = " + url);
+                Intent intent = new Intent(getContext(), ArticleListActivity.class);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+                return true;
+            }
             if (url.contains("thread.php")) {
                 url = url.replaceAll("(?i)[^\\[|\\]]+stid=(-?\\d+)[^\\[|\\]]*", Utils.getNGAHost() + "thread.php?stid=$1")
                         .replaceAll("(?i)[^\\[|\\]]+fid=(-?\\d+)[^\\[|\\]]*", Utils.getNGAHost() + "thread.php?fid=$1");
