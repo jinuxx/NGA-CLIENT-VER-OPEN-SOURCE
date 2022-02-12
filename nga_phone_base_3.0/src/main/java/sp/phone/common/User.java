@@ -1,25 +1,30 @@
 package sp.phone.common;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 /**
- * Created by Justwen on 2017/12/26.
+ * @author Justwen
+ * @date 2017/12/26
  */
-
+@Entity(tableName = "users")
 public class User {
 
+    @ColumnInfo(name = "cid")
+    public String mCid;
+
     @NonNull
-    private String mUserId;
+    @PrimaryKey
+    @ColumnInfo(name = "uid")
+    public String mUserId;
 
-    private String mNickName;
+    @ColumnInfo(name = "nick_name")
+    public String mNickName;
 
-    private String mCid;
-
-    private String mReplyString;
-
-    private int mReplyCount;
-
-    private String mAvatarUrl;
+    @ColumnInfo(name = "avatar_url")
+    public String mAvatarUrl;
 
     public User() {
     }
@@ -57,22 +62,6 @@ public class User {
 
     public void setCid(String cid) {
         mCid = cid;
-    }
-
-    public String getReplyString() {
-        return mReplyString;
-    }
-
-    public void setReplyString(String replyString) {
-        mReplyString = replyString;
-    }
-
-    public int getReplyCount() {
-        return mReplyCount;
-    }
-
-    public void setReplyCount(int replyCount) {
-        mReplyCount = replyCount;
     }
 
     public String getNickName() {
